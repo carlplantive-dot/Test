@@ -1,310 +1,93 @@
-export const defaultParish = {
-  name: "Paroisse Saint-Nizier",
-  city: "Lyon",
-  diocese: "Lyon",
-  description: "Notre paroisse est un lieu de fraternite et de charite au coeur de Lyon. Ensemble, nous oeuvrons pour les plus vulnerables de notre quartier.",
-  address: "1 Rue Saint-Nizier, 69002 Lyon",
-  contact: "paroisse@saint-nizier.fr",
-}
+export const IC = {
+  heart: "M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z",
+  utensils: "M3 2v7a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2V2M6 2v20M21 15V2a5 5 0 0 0-5 5v6a2 2 0 0 0 2 2h3Zm0 0v7",
+  book: "M12 7v14M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z",
+  church: "M12 2v6M9 5h6M6 22V11l6-4 6 4v11M6 22h12M10 22v-5h4v5",
+  users: "M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2M13 7a4 4 0 1 1-8 0 4 4 0 0 1 8 0M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75",
+  moon: "M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z",
+  home: "m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2zM9 22V12h6v10",
+  flame: "M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.07-2.14-.22-4.05 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.15.43-2.29 1-3a2.5 2.5 0 0 0 2.5 2.5Z",
+  star: "m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1Z",
+  chat: "M7.9 20A9 9 0 1 0 4 16.1L2 22Z",
+  person: "M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2M16 7a4 4 0 1 1-8 0 4 4 0 0 1 8 0",
+  plus: "M5 12h14M12 5v14",
+  back: "m15 18-6-6 6-6",
+  bell: "M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9M10.3 21a1.94 1.94 0 0 0 3.4 0",
+  share: "M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8M16 6l-4-4-4 4M12 2v13",
+  search: "M11 19a8 8 0 1 0 0-16 8 8 0 0 0 0 16ZM21 21l-4.3-4.3",
+  send: "M22 2 11 13M22 2l-7 20-4-9-9-4Z",
+  dots: "M12 13a1 1 0 1 0 0-2 1 1 0 0 0 0 2M12 6a1 1 0 1 0 0-2 1 1 0 0 0 0 2M12 20a1 1 0 1 0 0-2 1 1 0 0 0 0 2",
+  close: "M18 6 6 18M6 6l12 12",
+  chevronRight: "m9 18 6-6-6-6",
+};
 
-export const actions = [
-  {
-    id: 1,
-    title: "Maraude du vendredi soir",
-    type: "maraude",
-    description: "Tournee de rue pour rencontrer les sans-abris, distribuer repas chauds et couvertures. Un moment de fraternite et d'ecoute.",
-    date: "Tous les vendredis",
-    time: "20h00 - 23h30",
-    spotsNeeded: 4,
-    spotsFilled: 2,
-    location: "Depart de la paroisse",
-    tags: ["action", "rencontre", "regulier"],
-    icon: "heart",
-  },
-  {
-    id: 2,
-    title: "Repas fraternel du dimanche",
-    type: "repas",
-    description: "Repas partage ouvert a tous : paroissiens, personnes de la rue, familles en difficulte. Cuisine ensemble, priere, partage.",
-    date: "Dimanche 15 avril",
-    time: "12h00 - 14h30",
-    spotsNeeded: 8,
-    spotsFilled: 5,
-    location: "Salle paroissiale",
-    tags: ["repas", "fraternite", "ouvert a tous"],
-    icon: "utensils",
-  },
-  {
-    id: 3,
-    title: "Nuit de la Compassion",
-    type: "evenement",
-    description: "Soiree speciale : repas, topo court, louange, puis depart en maraude par equipes de 4. Ouvert aux chretiens et non-chretiens. Priere commune au retour.",
-    date: "Samedi 20 avril",
-    time: "19h00 - 02h00",
-    spotsNeeded: 20,
-    spotsFilled: 12,
-    location: "Eglise + rues de Lyon",
-    tags: ["evenement", "maraude", "priere", "special"],
-    icon: "moon",
-  },
-  {
-    id: 4,
-    title: "Tri de vetements",
-    type: "service",
-    description: "Session de tri et preparation de vetements pour les distributions. Ambiance conviviale, venez avec vos amis !",
-    date: "Mercredi 17 avril",
-    time: "14h00 - 17h00",
-    spotsNeeded: 6,
-    spotsFilled: 1,
-    location: "Local paroissial",
-    tags: ["service", "logistique", "accessible"],
-    icon: "shirt",
-  },
-  {
-    id: 5,
-    title: "Dimanche des peripheries",
-    type: "messe",
-    description: "Messe speciale animee pour et avec les plus pauvres. Homelie sur la diaconie, offrandes en nature (vetements, nourriture). Envoi en maraude apres la messe.",
-    date: "Dimanche 28 avril",
-    time: "10h30",
-    spotsNeeded: 15,
-    spotsFilled: 7,
-    location: "Eglise Saint-Nizier",
-    tags: ["messe", "peripheries", "engagement"],
-    icon: "church",
-  },
-  {
-    id: 6,
-    title: "Parrainage paroissial - Formation",
-    type: "formation",
-    description: "Formation pour le parrainage : duo de jeunes accompagnant une personne de la rue pendant un an. Rencontres hebdomadaires, activites, aide administrative.",
-    date: "Samedi 13 avril",
-    time: "10h00 - 12h00",
-    spotsNeeded: 10,
-    spotsFilled: 4,
-    location: "Salle paroissiale",
-    tags: ["formation", "parrainage", "engagement long"],
-    icon: "users",
-  },
-  {
-    id: 7,
-    title: "Hiver solidaire - Accueil de nuit",
-    type: "hebergement",
-    description: "Accueil de personnes sans-abri dans les locaux paroissiaux pour la nuit. Les benevoles deviennent le coeur priant et aimant de la paroisse.",
-    date: "Tous les soirs (nov-mars)",
-    time: "19h00 - 08h00",
-    spotsNeeded: 3,
-    spotsFilled: 1,
-    location: "Locaux paroissiaux",
-    tags: ["hebergement", "nuit", "urgence"],
-    icon: "home",
-  },
-  {
-    id: 8,
-    title: "Parcours Charite - Session 1",
-    type: "formation",
-    description: "Premier module du parcours de formation a la charite. Interviews de grands acteurs, premier pas vers les maraudes, mise en relation avec des lieux de charite.",
-    date: "Jeudi 18 avril",
-    time: "19h30 - 21h00",
-    spotsNeeded: 20,
-    spotsFilled: 8,
-    location: "Salle paroissiale",
-    tags: ["formation", "parcours", "decouverte"],
-    icon: "book",
-  },
-]
+const ACC = { tint: "var(--color-accent-200)", ink: "var(--color-accent-700)" };
+const SAGE = { tint: "var(--color-accent-2-200)", ink: "var(--color-accent-2-700)" };
+const NEU = { tint: "var(--color-neutral-200)", ink: "var(--color-neutral-800)" };
 
-export const needs = [
-  {
-    id: 1,
-    title: "Jean a besoin de chaussures (taille 43)",
-    category: "materiel",
-    urgency: "normal",
-    description: "Jean, que nous croisons chaque vendredi pres de Perrache, a les chaussures completement usees. Il chausse du 43.",
-    postedBy: "Equipe maraude",
-    date: "Il y a 2 jours",
-  },
-  {
-    id: 2,
-    title: "Famille syrienne cherche aide pour demarches administratives",
-    category: "accompagnement",
-    urgency: "important",
-    description: "Une famille arrivee recemment a besoin d'aide pour les demarches aupres de la prefecture et de la CAF. Parler arabe serait un plus.",
-    postedBy: "Pere Martin",
-    date: "Il y a 1 jour",
-  },
-  {
-    id: 3,
-    title: "Marie, 82 ans, se sent tres seule",
-    category: "presence",
-    urgency: "normal",
-    description: "Marie habite rue Merciere et ne sort presque plus. Elle aimerait de la visite, quelqu'un pour prendre un cafe et discuter.",
-    postedBy: "Visiteurs des malades",
-    date: "Il y a 3 jours",
-  },
-  {
-    id: 4,
-    title: "Besoin de benevoles pour la cuisine ce dimanche",
-    category: "benevolat",
-    urgency: "urgent",
-    description: "Il nous manque 3 cuisiniers pour le repas fraternel de dimanche. On attend 40 personnes !",
-    postedBy: "Equipe repas",
-    date: "Aujourd'hui",
-  },
-]
+export const WEEK = [
+  { id: 1, dow: "Ven", day: "12", type: "Maraude", t: "Maraude du vendredi soir", when: "20h → 23h30", where: "Départ de la paroisse", need: 4, fill: 2, c: ACC, group: 1,
+    desc: "Tournée de rue pour rencontrer les personnes sans abri, distribuer repas chauds et couvertures. On vient d'abord pour la rencontre." },
+  { id: 2, dow: "Dim", day: "14", type: "Repas fraternel", t: "Repas fraternel du dimanche", when: "12h → 14h30", where: "Salle paroissiale", need: 8, fill: 5, c: SAGE, group: 2,
+    desc: "Repas partagé ouvert à tous : paroissiens, personnes de la rue, familles en difficulté. On cuisine, on prie, on partage." },
+  { id: 3, dow: "Mer", day: "10", type: "Visite", t: "Visites aux personnes seules", when: "14h30 → 17h", where: "Quartier Mercière", need: 6, fill: 4, c: SAGE, group: 5,
+    desc: "Deux par deux, on rend visite aux paroissiens isolés et aux personnes âgées du quartier. Un café, du temps, rien d'autre." },
+  { id: 4, dow: "Jeu", day: "11", type: "Prière", t: "Veillée d'intercession", when: "20h30 → 21h30", where: "Chapelle du Saint-Sacrement", need: 20, fill: 9, c: NEU, group: 3,
+    desc: "Une heure de louange et d'intercession pour les personnes rencontrées en maraude cette semaine." }
+];
 
-export const prayerIntentions = [
-  {
-    id: 1,
-    text: "Priez pour Ahmed qui dort sous le pont de Perrache et qui a tres froid ce soir.",
-    prayers: 23,
-    postedBy: "Equipe maraude vendredi",
-    date: "Ce soir",
-  },
-  {
-    id: 2,
-    text: "Priez pour Sophie, jeune maman isolee qui vient d'arriver au foyer. Elle a besoin de courage et d'esperance.",
-    prayers: 45,
-    postedBy: "Equipe accueil",
-    date: "Hier",
-  },
-  {
-    id: 3,
-    text: "Priez pour notre ami Paul qui a ete hospitalise cette nuit. Il etait a la maraude la semaine derniere, plein de joie.",
-    prayers: 67,
-    postedBy: "Equipe maraude",
-    date: "Il y a 2 jours",
-  },
-  {
-    id: 4,
-    text: "Rendons grace : Marc a trouve un logement apres 3 ans a la rue ! Priez pour qu'il tienne bon dans cette nouvelle etape.",
-    prayers: 89,
-    postedBy: "Pere Martin",
-    date: "Il y a 3 jours",
-  },
-  {
-    id: 5,
-    text: "Priez pour les benevoles de la Nuit de la Compassion de samedi. Que l'Esprit Saint guide chaque rencontre.",
-    prayers: 34,
-    postedBy: "Coordination",
-    date: "Aujourd'hui",
-  },
-]
+export const GROUPS = [
+  { id: 1, name: "Maraude", last: "Thomas : on a 12 thermos ce soir 👍", time: "18:42", members: "14 membres · Thomas référent", icon: "heart", tint: ACC.tint, ink: ACC.ink, unread: 3 },
+  { id: 2, name: "Repas fraternel", last: "Anne : je m'occupe du dessert pour 40", time: "17:10", members: "22 membres · Anne référente", icon: "utensils", tint: SAGE.tint, ink: SAGE.ink, unread: 0 },
+  { id: 3, name: "Prière", last: "Père Martin : l'intention pour Ahmed est en ligne", time: "Hier", members: "38 membres · Père Martin", icon: "book", tint: NEU.tint, ink: NEU.ink, unread: 1 },
+  { id: 4, name: "Pastorale", last: "Claire : compte-rendu du conseil en pièce jointe", time: "Lun.", members: "9 membres · équipe paroissiale", icon: "church", tint: "var(--color-accent-100)", ink: "var(--color-accent-700)", unread: 0 },
+  { id: 5, name: "Présence & visites", last: "Vous : Marie était contente de la visite 🌼", time: "Dim.", members: "11 membres · Sylvie référente", icon: "users", tint: "var(--color-accent-2-100)", ink: "var(--color-accent-2-700)", unread: 0 }
+];
 
-export const urgentNeeds = [
-  {
-    id: 1,
-    title: "Repas improvise ce soir pour 10 personnes du foyer !",
-    description: "Le foyer d'en face nous signale 10 personnes qui n'ont rien a manger ce soir. Qui peut cuisiner ou apporter quelque chose pour 19h ?",
-    time: "Il y a 15 min",
-    resolved: false,
-    responses: 3,
-  },
-  {
-    id: 2,
-    title: "Couvertures urgentes - vague de froid",
-    description: "Temperatures en chute cette nuit. Nous avons besoin de couvertures et duvets pour les personnes que nous croisons en maraude. Depot a la paroisse avant 19h.",
-    time: "Il y a 1h",
-    resolved: false,
-    responses: 7,
-  },
-  {
-    id: 3,
-    title: "Accompagnement hopital demain matin",
-    description: "Pierre, sans domicile, a un rendez-vous medical important demain a 9h a l'Hopital Edouard Herriot. Il a besoin de quelqu'un pour l'accompagner.",
-    time: "Il y a 3h",
-    resolved: false,
-    responses: 1,
-  },
-]
+export const MSGS = {
+  1: [
+    { who: "Thomas L.", initials: "TL", text: "On a 12 thermos ce soir, ça devrait suffire pour la boucle Perrache.", mine: false },
+    { who: "Marie B.", initials: "MB", text: "Je récupère les couvertures au local à 19h30.", mine: false },
+    { who: "Vous", initials: "CM", text: "Parfait, je vous rejoins directement sur le parvis.", mine: true },
+    { who: "Thomas L.", initials: "TL", text: "Il nous manque le pain — quelqu'un peut passer à la boulangerie ?", mine: false }
+  ],
+  2: [
+    { who: "Anne D.", initials: "AD", text: "40 couverts dimanche, on est 5 en cuisine.", mine: false },
+    { who: "Vous", initials: "CM", text: "Je viens dès 10h pour l'épluchage.", mine: true },
+    { who: "Anne D.", initials: "AD", text: "Génial. Il manque encore quelqu'un pour le dessert.", mine: false }
+  ],
+  3: [
+    { who: "Père Martin", initials: "PM", text: "L'intention pour Ahmed est en ligne, 23 personnes prient déjà.", mine: false },
+    { who: "Sylvie R.", initials: "SR", text: "Veillée jeudi 20h30, on lit l'évangile des Béatitudes.", mine: false }
+  ],
+  4: [
+    { who: "Claire V.", initials: "CV", text: "Compte-rendu du conseil pastoral en pièce jointe.", mine: false },
+    { who: "Père Martin", initials: "PM", text: "Merci Claire. On valide le Dimanche des périphéries pour le 28.", mine: false }
+  ],
+  5: [
+    { who: "Sylvie R.", initials: "SR", text: "Marie, 82 ans, rue Mercière — qui peut passer cette semaine ?", mine: false },
+    { who: "Vous", initials: "CM", text: "J'y suis allée dimanche, elle était contente 🌼", mine: true }
+  ]
+};
 
-export const quizQuestions = [
-  {
-    id: 1,
-    question: "Tu es plutot...",
-    options: [
-      { text: "Action ! J'aime bouger et faire des choses concretes", value: "action", icon: "zap" },
-      { text: "Ecoute. J'aime prendre le temps d'etre present", value: "ecoute", icon: "ear" },
-      { text: "Organisation. J'aime que les choses soient bien preparees", value: "orga", icon: "clipboard" },
-      { text: "Creativite. J'aime apporter de la joie et de la beaute", value: "creatif", icon: "palette" },
-    ],
-  },
-  {
-    id: 2,
-    question: "Combien de temps peux-tu donner ?",
-    options: [
-      { text: "1h de temps en temps", value: "1h", icon: "clock" },
-      { text: "Une soiree par semaine", value: "soiree", icon: "sunset" },
-      { text: "Un week-end par mois", value: "weekend", icon: "calendar" },
-      { text: "Je veux m'engager sur la duree", value: "long", icon: "infinity" },
-    ],
-  },
-  {
-    id: 3,
-    question: "Tu preferes etre...",
-    options: [
-      { text: "En equipe avec d'autres jeunes", value: "equipe", icon: "users" },
-      { text: "En duo, un accompagnement personnel", value: "duo", icon: "user-plus" },
-      { text: "Seul, a mon rythme", value: "solo", icon: "user" },
-      { text: "Peu importe, je m'adapte !", value: "flexible", icon: "shuffle" },
-    ],
-  },
-  {
-    id: 4,
-    question: "Qu'est-ce qui te touche le plus ?",
-    options: [
-      { text: "La solitude des personnes agees", value: "solitude", icon: "heart" },
-      { text: "Les personnes a la rue", value: "rue", icon: "home" },
-      { text: "Les familles en difficulte", value: "familles", icon: "baby" },
-      { text: "Les personnes exilees / refugiees", value: "refugies", icon: "globe" },
-    ],
-  },
-  {
-    id: 5,
-    question: "Quelle est ta relation avec la foi ?",
-    options: [
-      { text: "Je suis chretien pratiquant", value: "pratiquant", icon: "cross" },
-      { text: "Je suis en chemin, curieux", value: "chemin", icon: "compass" },
-      { text: "Je ne suis pas croyant mais je veux aider", value: "non-croyant", icon: "hand-heart" },
-      { text: "Je cherche du sens dans ma vie", value: "sens", icon: "search" },
-    ],
-  },
-]
+export const NEEDS = [
+  { id: 1, cat: "Matériel", title: "Jean a besoin de chaussures (taille 43)", desc: "Jean, croisé chaque vendredi près de Perrache, a les chaussures complètement usées.", by: "Équipe maraude", date: "Il y a 2 j", urgent: false },
+  { id: 4, cat: "Bénévolat", title: "3 cuisiniers pour le repas de dimanche", desc: "On attend 40 personnes et il nous manque du monde en cuisine dès 10h.", by: "Équipe repas", date: "Aujourd'hui", urgent: true },
+  { id: 2, cat: "Accompagnement", title: "Famille syrienne — aide aux démarches", desc: "Aide pour la préfecture et la CAF. Parler arabe serait un plus.", by: "Père Martin", date: "Hier", urgent: false },
+  { id: 3, cat: "Présence", title: "Marie, 82 ans, se sent très seule", desc: "Elle habite rue Mercière et ne sort presque plus. Un café, une visite.", by: "Visiteurs des malades", date: "Il y a 3 j", urgent: false }
+];
 
-export const quizResults = {
-  maraude: {
-    title: "La Maraude",
-    subtitle: "Tu es fait pour aller a la rencontre !",
-    description: "Ton coeur d'action et ta capacite a aller vers les autres te rendent parfait pour les maraudes. Rejoins une equipe et pars a la rencontre de ceux qui vivent dans la rue. Un moment de fraternite inoubliable t'attend.",
-    actions: ["Maraude du vendredi soir", "Nuit de la Compassion"],
-    icon: "heart",
-  },
-  parrainage: {
-    title: "Le Parrainage Paroissial",
-    subtitle: "Tu es fait pour l'accompagnement de longue duree !",
-    description: "Ta capacite d'ecoute et ton desir d'engagement dans la duree font de toi un parrain ideal. En duo avec un autre jeune, tu accompagneras une personne de la rue pendant un an : rencontres, activites, aide concrete.",
-    actions: ["Parrainage paroissial - Formation", "Parcours Charite"],
-    icon: "users",
-  },
-  repas: {
-    title: "Les Repas Fraternels",
-    subtitle: "Tu es fait pour creer du lien autour d'une table !",
-    description: "Ta creativite et ta joie de vivre seront une benediction pour les repas fraternels. Cuisine, accueil, animation : chaque dimanche est une fete ou tout le monde est bienvenu.",
-    actions: ["Repas fraternel du dimanche", "Tri de vetements"],
-    icon: "utensils",
-  },
-  priere: {
-    title: "Le Soutien par la Priere",
-    subtitle: "Tu es fait pour porter les autres dans la priere !",
-    description: "Meme a distance, ta priere fait une difference. Rejoins la chaine d'intercession pour les personnes de la rue, et decouvre comment la contemplation nourrit l'action.",
-    actions: ["Intentions de priere", "Dimanche des peripheries"],
-    icon: "flame",
-  },
-  accueil: {
-    title: "L'Accueil et l'Hebergement",
-    subtitle: "Tu es fait pour ouvrir les portes !",
-    description: "Ton sens de l'organisation et ta generosite sont essentiels pour l'hebergement solidaire. Accueillir, preparer les lieux, etre present la nuit : tu deviens le coeur priant et aimant de la paroisse.",
-    actions: ["Hiver solidaire - Accueil de nuit", "Maraude du vendredi soir"],
-    icon: "home",
-  },
-}
+export const NEWS = [
+  { t: "Collecte de couvertures", by: "Équipe maraude", date: "Il y a 4 h", d: "Vague de froid annoncée : dépôt de couvertures et duvets au secrétariat, tous les jours avant 19h.", icon: "flame", tint: "var(--color-accent-200)", ink: "var(--color-accent-700)" },
+  { t: "Parcours Charité — session 1", by: "Père Martin", date: "Hier", d: "Jeudi 18 avril à 19h30, salle paroissiale. Interviews, premiers pas vers la maraude, 20 places.", icon: "book", tint: "var(--color-neutral-200)", ink: "var(--color-neutral-800)" },
+  { t: "Hiver solidaire : merci !", by: "Conseil pastoral", date: "Il y a 3 j", d: "112 nuits d'accueil cette saison, 38 bénévoles mobilisés. La saison se clôture le 31 mars.", icon: "church", tint: "var(--color-accent-2-200)", ink: "var(--color-accent-2-700)" }
+];
+
+export const BADGES = [
+  { name: "Maraudeuse", sub: "10 sorties", icon: "heart", on: true, tint: "var(--color-accent-200)", ink: "var(--color-accent-800)" },
+  { name: "Parcours Charité", sub: "validé", icon: "book", on: true, tint: "var(--color-accent-2-200)", ink: "var(--color-accent-2-800)" },
+  { name: "Veilleuse", sub: "25 prières", icon: "moon", on: true, tint: "var(--color-neutral-200)", ink: "var(--color-neutral-800)" },
+  { name: "Volontaire Flash", sub: "5 réponses", icon: "flame", on: true, tint: "var(--color-accent-200)", ink: "var(--color-accent-800)" },
+  { name: "Référente", sub: "thermos", icon: "star", on: true, tint: "var(--color-accent-2-200)", ink: "var(--color-accent-2-800)" },
+  { name: "Marraine", sub: "à débloquer", icon: "users", on: false, tint: "var(--color-neutral-200)", ink: "var(--color-neutral-500)" }
+];
