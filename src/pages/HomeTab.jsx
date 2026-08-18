@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { WEEK, GROUPS, PRAYER_INTENTIONS, IC } from '../data/parishData'
 import ScopeSelector, { ScopeBadge } from '../components/ScopeSelector'
+import DiscoverScreen from './DiscoverScreen'
 
 function Icon({ d, size = 18, color = "currentColor" }) {
   return (
@@ -177,6 +178,10 @@ export default function HomeTab({ onNavigate }) {
     setExtraIntentions(p => [{ ...prayer, id: Date.now(), by: "Vous", date: "À l'instant", prayCount: 0 }, ...p])
   }
 
+  if (view === "discover") {
+    return <DiscoverScreen onBack={() => setView("main")} />
+  }
+
   if (view === "event") {
     return (
       <div style={{ height: "100%", display: "flex", flexDirection: "column", background: "var(--color-bg)" }}>
@@ -238,6 +243,19 @@ export default function HomeTab({ onNavigate }) {
             </div>
           </div>
         )}
+
+        {/* Découvrir */}
+        <button onClick={() => setView("discover")}
+          style={{ border: 0, cursor: "pointer", textAlign: "left", borderRadius: 24, padding: "14px 16px", background: "var(--color-accent-800)", color: "var(--color-bg)", display: "flex", alignItems: "center", gap: 13, boxShadow: "var(--shadow-sm)" }}>
+          <div style={{ width: 42, height: 42, flexShrink: 0, borderRadius: 999, background: "rgba(245,234,216,.18)", display: "flex", alignItems: "center", justifyContent: "center" }}>
+            <Icon d={IC.compass} color="var(--color-bg)" size={20} />
+          </div>
+          <div style={{ flex: 1 }}>
+            <div style={{ font: `700 15px var(--font-body)` }}>Découvrir le chemin</div>
+            <div style={{ font: `400 12.5px var(--font-body)`, opacity: .78, marginTop: 2 }}>5 chemins · quiz + exploration libre</div>
+          </div>
+          <Icon d={IC.chevronRight} color="rgba(245,234,216,.6)" size={17} />
+        </button>
 
         {/* Cette semaine */}
         <div>
