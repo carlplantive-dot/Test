@@ -1,5 +1,6 @@
 import { useState } from 'react'
-import { WEEK, GROUPS, IC } from '../data/parishData'
+import { WEEK, GROUPS, PRAYER_INTENTIONS, IC } from '../data/parishData'
+import ScopeSelector, { ScopeBadge } from '../components/ScopeSelector'
 
 function Icon({ d, size = 18, color = "currentColor" }) {
   return (
@@ -110,24 +111,70 @@ function EventDetail({ evId, signed, onSign, onBack, onOpenGroup }) {
   )
 }
 
+function NewPrayerSheet({ onClose, onSubmit }) {
+  const [text, setText] = useState("")
+  const [scope, setScope] = useState("groupe")
+
+  function handleSubmit() {
+    if (!text.trim()) return
+    onSubmit({ text, visibilite: scope })
+    onClose()
+  }
+
+  return (
+    <div style={{ position: "fixed", inset: 0, zIndex: 100, display: "flex", flexDirection: "column", justifyContent: "flex-end", background: "rgba(32,30,29,.5)" }}
+      onClick={e => { if (e.target === e.currentTarget) onClose() }}>
+      <div style={{ background: "var(--color-bg)", borderRadius: "28px 28px 0 0", padding: "24px 20px 40px", display: "flex", flexDirection: "column", gap: 16, maxHeight: "85vh", overflowY: "auto" }}>
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+          <h3 style={{ fontSize: 22 }}>Déposer une intention</h3>
+          <button onClick={onClose} style={{ border: 0, background: "var(--color-neutral-200)", cursor: "pointer", width: 36, height: 36, display: "flex", alignItems: "center", justifyContent: "center", borderRadius: 999 }}>
+            <Icon d={IC.close} size={16} color="var(--color-neutral-700)" />
+          </button>
+        </div>
+
+        <div style={{ background: "var(--color-accent-2-100)", borderRadius: 14, padding: "10px 14px", font: `400 12.5px/1.5 var(--font-body)`, color: "var(--color-accent-2-800)" }}>
+          Ne nommez pas la personne si vous diffusez au-delà de votre groupe — une description suffit.
+        </div>
+
+        <div>
+          <label style={{ font: `600 11px var(--font-body)`, letterSpacing: ".08em", textTransform: "uppercase", color: "var(--color-neutral-600)", display: "block", marginBottom: 6 }}>Intention</label>
+          <textarea value={text} onChange={e => setText(e.target.value)}
+            placeholder="Ex : pour une personne rencontrée vendredi qui cherche un hébergement…"
+            rows={4}
+            style={{ width: "100%", border: "1px solid var(--color-divider)", borderRadius: 14, padding: "11px 14px", font: `400 14px var(--font-body)`, background: "var(--color-neutral-100)", color: "var(--color-text)", outline: "none", resize: "none", boxSizing: "border-box" }} />
+        </div>
+
+        <ScopeSelector value={scope} onChange={setScope} />
+
+        <button onClick={handleSubmit}
+          style={{ border: 0, cursor: "pointer", borderRadius: 999, padding: 15, font: `400 15px var(--font-heading)`, background: text.trim() ? "var(--color-accent-2-600)" : "var(--color-neutral-300)", color: text.trim() ? "var(--color-bg)" : "var(--color-neutral-600)" }}>
+          Déposer l'intention
+        </button>
+      </div>
+    </div>
+  )
+}
+
 export default function HomeTab({ onNavigate }) {
   const [signed, setSigned] = useState({})
-  const [prayed, setPrayed] = useState(false)
+  const [prayed, setPrayed] = useState({})
   const [flashOpen, setFlashOpen] = useState(true)
   const [flashHelp, setFlashHelp] = useState(false)
   const [view, setView] = useState("main")
   const [evId, setEvId] = useState(1)
+  const [showPrayerForm, setShowPrayerForm] = useState(false)
+  const [extraIntentions, setExtraIntentions] = useState([])
 
-  function toggleSign(id) {
-    setSigned(p => ({ ...p, [id]: !p[id] }))
-  }
+  function toggleSign(id) { setSigned(p => ({ ...p, [id]: !p[id] })) }
+  function togglePray(id) { setPrayed(p => ({ ...p, [id]: !p[id] })) }
 
   function handleSign(e) {
-    if (signed[e.id]) {
-      onNavigate("groups", { grpId: e.group })
-    } else {
-      toggleSign(e.id)
-    }
+    if (signed[e.id]) onNavigate("groups", { grpId: e.group })
+    else toggleSign(e.id)
+  }
+
+  function handleNewPrayer(prayer) {
+    setExtraIntentions(p => [{ ...prayer, id: Date.now(), by: "Vous", date: "À l'instant", prayCount: 0 }, ...p])
   }
 
   if (view === "event") {
@@ -138,8 +185,8 @@ export default function HomeTab({ onNavigate }) {
           signed={signed}
           onSign={() => {
             const e = WEEK.find(x => x.id === evId)
-            if (signed[evId]) { onNavigate("groups", { grpId: e.group }) }
-            else { toggleSign(evId) }
+            if (signed[evId]) onNavigate("groups", { grpId: e.group })
+            else toggleSign(evId)
           }}
           onBack={() => setView("main")}
           onOpenGroup={() => {
@@ -152,6 +199,7 @@ export default function HomeTab({ onNavigate }) {
   }
 
   const signedCount = Object.values(signed).filter(Boolean).length
+  const allIntentions = [...extraIntentions, ...PRAYER_INTENTIONS]
 
   return (
     <div style={{ height: "100%", display: "flex", flexDirection: "column", background: "var(--color-bg)" }}>
@@ -168,6 +216,8 @@ export default function HomeTab({ onNavigate }) {
       </div>
 
       <div style={{ flex: 1, minHeight: 0, overflowY: "auto", padding: "6px 18px 12px", display: "flex", flexDirection: "column", gap: 14 }}>
+
+        {/* Flash Fraternité */}
         {flashOpen && (
           <div style={{ background: "var(--color-accent)", borderRadius: 26, padding: "15px 16px", color: "var(--color-bg)", boxShadow: "var(--shadow-md)" }}>
             <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
@@ -189,6 +239,7 @@ export default function HomeTab({ onNavigate }) {
           </div>
         )}
 
+        {/* Cette semaine */}
         <div>
           <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", marginBottom: 4 }}>
             <h3 style={{ fontSize: 24 }}>Cette semaine</h3>
@@ -204,18 +255,37 @@ export default function HomeTab({ onNavigate }) {
           />
         ))}
 
-        <div style={{ background: "var(--color-accent-2-100)", borderRadius: 26, padding: 16 }}>
-          <div style={{ font: `600 10.5px/1 var(--font-body)`, letterSpacing: ".09em", textTransform: "uppercase", color: "var(--color-accent-2-700)" }}>Intention de la semaine</div>
-          <p style={{ margin: "10px 0 12px", font: `400 16px/1.4 var(--font-heading)`, color: "var(--color-accent-2-900)" }}>Priez pour Ahmed qui dort sous le pont de Perrache et qui a très froid ce soir.</p>
-          <div style={{ display: "flex", alignItems: "center", gap: 11 }}>
-            <button onClick={() => setPrayed(p => !p)}
-              style={{ border: 0, cursor: "pointer", borderRadius: 999, padding: "10px 16px", font: `400 13px var(--font-heading)`, background: prayed ? "var(--color-accent-2-600)" : "var(--color-accent-2-300)", color: prayed ? "var(--color-bg)" : "var(--color-accent-2-900)" }}>
-              {prayed ? "Je prie 🙏" : "Je prie"}
-            </button>
-            <span style={{ font: `400 12px var(--font-body)`, color: "var(--color-accent-2-800)" }}>{61 + (prayed ? 1 : 0)} paroissiens prient</span>
-          </div>
+        {/* Intentions de prière */}
+        <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between" }}>
+          <div style={{ font: `600 11px var(--font-body)`, letterSpacing: ".08em", textTransform: "uppercase", color: "var(--color-neutral-600)" }}>Intentions de prière</div>
+          <button onClick={() => setShowPrayerForm(true)}
+            style={{ border: 0, background: "transparent", cursor: "pointer", font: `600 12px var(--font-body)`, color: "var(--color-accent-700)", padding: 0 }}>
+            + Déposer
+          </button>
         </div>
+
+        {allIntentions.map(intention => {
+          const isPrayed = !!prayed[intention.id]
+          return (
+            <div key={intention.id} style={{ background: "var(--color-accent-2-100)", borderRadius: 26, padding: 16 }}>
+              <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 8 }}>
+                <span style={{ font: `400 11px var(--font-body)`, color: "var(--color-accent-2-700)" }}>{intention.by} · {intention.date}</span>
+                <ScopeBadge visibilite={intention.visibilite} />
+              </div>
+              <p style={{ margin: "0 0 12px", font: `400 15px/1.4 var(--font-heading)`, color: "var(--color-accent-2-900)" }}>{intention.text}</p>
+              <div style={{ display: "flex", alignItems: "center", gap: 11 }}>
+                <button onClick={() => togglePray(intention.id)}
+                  style={{ border: 0, cursor: "pointer", borderRadius: 999, padding: "10px 16px", font: `400 13px var(--font-heading)`, background: isPrayed ? "var(--color-accent-2-600)" : "var(--color-accent-2-300)", color: isPrayed ? "var(--color-bg)" : "var(--color-accent-2-900)" }}>
+                  {isPrayed ? "Je prie 🙏" : "Je prie"}
+                </button>
+                <span style={{ font: `400 12px var(--font-body)`, color: "var(--color-accent-2-800)" }}>{(intention.prayCount || 0) + (isPrayed ? 1 : 0)} paroissiens prient</span>
+              </div>
+            </div>
+          )
+        })}
       </div>
+
+      {showPrayerForm && <NewPrayerSheet onClose={() => setShowPrayerForm(false)} onSubmit={handleNewPrayer} />}
     </div>
   )
 }
